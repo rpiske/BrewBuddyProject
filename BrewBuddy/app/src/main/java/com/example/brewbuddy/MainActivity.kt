@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     //TEST COMMENT
+    //This comment begins RecyclerView Branch
 
     val BASE_URL = "https://api.openbrewerydb.org/v1/"
     private val TAG = "MainActivity"
