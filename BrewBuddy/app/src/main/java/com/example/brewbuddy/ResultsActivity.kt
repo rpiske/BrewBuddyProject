@@ -28,6 +28,14 @@ class ResultsActivity : AppCompatActivity() {
         val zipCode = intent.getSerializableExtra("zipCode") as String
         breweryLocations.add(sampleSpot)
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+
+        val myRecycleAdapter = MyRecycleAdapter(breweryLocations)
+        recyclerView.adapter = myRecycleAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -44,6 +52,7 @@ class ResultsActivity : AppCompatActivity() {
                     return
                 }
                 breweryLocations.addAll(body)
+                myRecycleAdapter.notifyDataSetChanged()
                 Log.d(TAG, "a: ${breweryLocations[0].name}")
                 Log.d(TAG, "b: ${breweryLocations[1].name}")
                 Log.d(TAG, "c: ${breweryLocations[2].name}")
@@ -54,12 +63,7 @@ class ResultsActivity : AppCompatActivity() {
             }
         })
         //What should I do to ensure I have the data from the API before passing it to MyRecycleAdapter?
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
-        recyclerView.adapter = MyRecycleAdapter(breweryLocations)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
     }
 }
