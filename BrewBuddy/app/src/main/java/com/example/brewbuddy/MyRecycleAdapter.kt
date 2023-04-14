@@ -42,6 +42,7 @@ class MyRecycleAdapter(val breweryLocations: ArrayList<Brewery>): RecyclerView.A
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.brewName.text = breweryLocations[position].name
         holder.brewStreet.text = breweryLocations[position].street
+        //why am I getting city and state but not zip from this??
         holder.brewCity.text = "${breweryLocations[position].city}, ${breweryLocations[position].state} ${breweryLocations[position].zip}"
         holder.brewPhone.text = breweryLocations[position].phone
         holder.brewWebsite.text = breweryLocations[position].website_url

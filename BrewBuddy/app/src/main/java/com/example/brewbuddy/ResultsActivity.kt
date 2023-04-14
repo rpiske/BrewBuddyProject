@@ -17,6 +17,8 @@ class ResultsActivity : AppCompatActivity() {
 
     val BASE_URL = "https://api.openbrewerydb.org/v1/"
     val breweryLocations = ArrayList<Brewery>()
+    val sampleSpot = Brewery("Test Brewery", "test street", "test city",
+    "CT", "06040", "47", "72", "475-226-1717", "www.google.com")
     private val TAG = "ResultsActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +26,7 @@ class ResultsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_results)
 
         val zipCode = intent.getSerializableExtra("zipCode") as String
+        breweryLocations.add(sampleSpot)
 
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -50,7 +53,7 @@ class ResultsActivity : AppCompatActivity() {
                 Log.d(TAG, "onResponse: $t")
             }
         })
-
+        //What should I do to ensure I have the data from the API before passing it to MyRecycleAdapter?
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
         recyclerView.adapter = MyRecycleAdapter(breweryLocations)
