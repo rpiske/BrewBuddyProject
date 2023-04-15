@@ -17,8 +17,8 @@ class ResultsActivity : AppCompatActivity() {
 
     val BASE_URL = "https://api.openbrewerydb.org/v1/"
     val breweryLocations = ArrayList<Brewery>()
-    val sampleSpot = Brewery("Test Brewery", "test street", "test city",
-    "CT", "06040", "47", "72", "475-226-1717", "www.google.com")
+    //val sampleSpot = Brewery("Test Brewery", "test street", "test city",
+    //"CT", "06040", "47", "72", "475-226-1717", "www.google.com")
     private val TAG = "ResultsActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class ResultsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_results)
 
         val zipCode = intent.getSerializableExtra("zipCode") as String
-        breweryLocations.add(sampleSpot)
+        //breweryLocations.add(sampleSpot)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
@@ -43,7 +43,7 @@ class ResultsActivity : AppCompatActivity() {
 
         val breweryLocationsAPI = retrofitBuilder.create(BreweryService::class.java)
 
-        breweryLocationsAPI.getBreweryByZip(zipCode, 3).enqueue(object : Callback<List<Brewery>?> {
+        breweryLocationsAPI.getBreweryByZip(zipCode, 50).enqueue(object : Callback<List<Brewery>?> {
             override fun onResponse(call: Call<List<Brewery>?>, response: Response<List<Brewery>?>) {
                 Log.d(TAG, "onResponse: $response")
                 val body = response.body()
@@ -53,9 +53,9 @@ class ResultsActivity : AppCompatActivity() {
                 }
                 breweryLocations.addAll(body)
                 myRecycleAdapter.notifyDataSetChanged()
-                Log.d(TAG, "a: ${breweryLocations[0].name}")
-                Log.d(TAG, "b: ${breweryLocations[1].name}")
-                Log.d(TAG, "c: ${breweryLocations[2].name}")
+                //Log.d(TAG, "a: ${breweryLocations[0].name}")
+                //Log.d(TAG, "b: ${breweryLocations[1].name}")
+                //Log.d(TAG, "c: ${breweryLocations[2].name}")
             }
 
             override fun onFailure(call: Call<List<Brewery>?>, t: Throwable) {
