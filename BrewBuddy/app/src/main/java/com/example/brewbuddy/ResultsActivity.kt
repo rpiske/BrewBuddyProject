@@ -19,6 +19,7 @@ class ResultsActivity : AppCompatActivity() {
     val breweryLocations = ArrayList<Brewery>()
     //val sampleSpot = Brewery("Test Brewery", "test street", "test city",
     //"CT", "06040", "47", "72", "475-226-1717", "www.google.com")
+    //TEST COMMENT
     private val TAG = "ResultsActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
